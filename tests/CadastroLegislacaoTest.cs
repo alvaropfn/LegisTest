@@ -16,30 +16,27 @@ namespace LegisTests
         private IWebDriver driver;
         public WebDriverWait wait;
         private StringBuilder verificationErrors;
-        private string baseURL;
         private bool acceptNextAlert = true;
 
         private void LimparMemoria () {
           string comando;
           comando = "tasklist | grep chromedriver";
           System.Diagnostics.Process.Start("CMD.exe", comando);
-          
+
           comando = "taskkill /F /IM chromedriver.exe /T";
           System.Diagnostics.Process.Start("CMD.exe", comando);
         }
-        
+
         [SetUp]
         public void SetupTest()
         {
           this.LimparMemoria();
-            // driver = new ChromeDriver();
             driver = new ChromeDriver(ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory));
 
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(10));
 
-            baseURL = "https://www.google.com/";
             verificationErrors = new StringBuilder();
         }
         
@@ -159,7 +156,6 @@ namespace LegisTests
                 numeroNorma.Clear();
                 numeroNorma.SendKeys("0123456789");
             }
-            
 
             //* Select Meio Publicacao
             FindBy(Selector.ID, "select_idMeioPublicacao").Click();
@@ -192,17 +188,7 @@ namespace LegisTests
             //* Enviar
             FindBy(Selector.XPATH, "//*[@id='legislacaoCadastroForm']/div[8]/button").Click();
 
-
-            // IAlert alert = wait.Until(ExpectedConditions.AlertIsPresent());
-            // String content = alert.Text;
-
-            // IWebElement alert = FindBy(Selector.ID, "swal2-title");
-            Console.WriteLine(IsElementPresent(By.Id("swal2-title")));
-            Assert.Equals(IsElementPresent(By.Id("swal2-title")), true);
-            Thread.Sleep(5000);
-            // Assert.AreEqual(content, "Sucesso");
-            // /html/body/div[2]/div/div[1]/h2
-            // Sucesso
+            Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
         }
         private bool IsElementPresent(By by)
         {
