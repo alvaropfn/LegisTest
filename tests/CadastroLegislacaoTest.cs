@@ -98,7 +98,7 @@ namespace LegisTests
         }
 
         public void Login(){
-            driver.Navigate().GoToUrl("http://localhost:4200/");
+            driver.Navigate().GoToUrl("http://legisint.tce.govrn/#/login");
 
             IWebElement username = FindBy(Selector.ID, "username");
             username.Click();
@@ -125,10 +125,51 @@ namespace LegisTests
             FindBy(Selector.LINK, "Módulo de controle de legislações do Legis").Click();
             FindBy(Selector.ID, "LegislacaoCadastro").Click();
 
-            //* Select Esfera
-            FindBy(Selector.ID, "select_idAssuntoNorma").Click();
-            FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[1]/div[1]/ng-select/ng-dropdown-panel/div/div[2]/div[1]").Click();
+            
+            //* Select tipo norma
+            IWebElement tipoNorma =  FindBy(Selector.XPATH, "//*[@id='select_idTipoNorma']/div/div/div[2]/input");
+            tipoNorma.SendKeys("Decreto");
+            tipoNorma.SendKeys(OpenQA.Selenium.Keys.Return);
 
+            //* Select Ano
+            IWebElement anoNorma = FindBy(Selector.ID, "anoNorma");
+            if(anoNorma != null){
+                anoNorma.Clear();
+            }
+            anoNorma.SendKeys("2019");
+            
+            //* Select Numero
+            IWebElement numeroNorma = FindBy(Selector.ID, "numeroNorma");
+            if(numeroNorma != null){
+                numeroNorma.Clear();
+            }
+            numeroNorma.SendKeys("0123456789");
+
+            //* Select Meio Publicacao
+            IWebElement meioPublicacao = FindBy(Selector.XPATH, "//*[@id='select_idMeioPublicacao']/div/div/div[2]/input");
+            meioPublicacao.SendKeys("Diário Oficial da União");
+            meioPublicacao.SendKeys(OpenQA.Selenium.Keys.Return);
+
+            //* Select Data Publicacao
+            IWebElement dataPublicacao = FindBy(Selector.ID, "dataPublicacao");
+            dataPublicacao.SendKeys("01/01/1950");
+
+            //* Select Assunto Norma
+            IWebElement assuntoNorma =  FindBy(Selector.XPATH, "//*[@id='idAssuntoNorma']/div/div/div[2]/input");
+            assuntoNorma.SendKeys("Plano de Cargos, Carreiras e Remuneração");
+            assuntoNorma.SendKeys(OpenQA.Selenium.Keys.Return);
+
+            //* Botao Acao
+            IWebElement addAcao = FindBy(Selector.ID, "acao");
+            addAcao.Click();
+            
+            //* Select pdf
+            IWebElement anexo = FindBy(Selector.ID, "anexo");
+            anexo.SendKeys(@"C:\\Users\\11400574480\\Desktop\\sugestoesSIAIAP.pdf");
+            // anexo.Click();
+            // anexo.Clear();
+//            anexo.SendKeys(@"C:/Users/alvaro/Documents/Flutter-Dev-Syllabus.pdf");
+/*
             //* Select Area Atuacao
             FindBy(Selector.ID, "select_idAreaAtuacao").Click();
             FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[1]/div[2]/ng-select/ng-dropdown-panel/div/div[2]/div[1]").Click();
@@ -136,36 +177,6 @@ namespace LegisTests
             //* Select Municipio
             FindBy(Selector.ID, "idCidade").Click();
             FindBy(Selector.XPATH, "/html/body/ng-dropdown-panel/div/div[2]/div[88]").Click();
-
-            //* Select tipo norma
-            FindBy(Selector.ID, "select_idTipoNorma").Click();
-            FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[2]/div[1]/ng-select/ng-dropdown-panel/div/div[2]/div[3]").Click();
-
-            //* Select Ano
-            IWebElement anoNorma = FindBy(Selector.ID, "anoNorma");
-            if(anoNorma != null){
-                anoNorma.Click();
-                anoNorma.Clear();
-                anoNorma.SendKeys("2019");
-            }
-
-            //* Select Numero
-            IWebElement numeroNorma = FindBy(Selector.ID, "numeroNorma");
-            if(numeroNorma != null){
-                numeroNorma.Click();
-                numeroNorma.Clear();
-                numeroNorma.SendKeys("0123456789");
-            }
-
-            //* Select Meio Publicacao
-            FindBy(Selector.ID, "select_idMeioPublicacao").Click();
-            FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[3]/div[1]/ng-select/ng-dropdown-panel/div/div[2]/div[3]").Click();
-
-            //* Select Data Publicacao
-            IWebElement dataPublicacao = FindBy(Selector.ID, "dataPublicacao");
-            dataPublicacao.Click();
-            dataPublicacao.Clear();
-            dataPublicacao.SendKeys("01/01/1950");
 
             //* Select Data Inicio Vigencia
             IWebElement dataInicioVigencia = FindBy(Selector.ID, "dataInicioVigencia");
@@ -178,17 +189,11 @@ namespace LegisTests
             dataFimVigencia.Click();
             dataFimVigencia.Clear();
             dataFimVigencia.SendKeys("01/12/2020");
-
-            //* Select pdf
-            IWebElement anexo = FindBy(Selector.ID, "anexo");
-            // anexo.Click();
-            // anexo.Clear();
-            anexo.SendKeys(@"C:/Users/alvaro/Documents/Flutter-Dev-Syllabus.pdf");
+*/ 
 
             //* Enviar
-            FindBy(Selector.XPATH, "//*[@id='legislacaoCadastroForm']/div[8]/button").Click();
-
-            Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
+            FindBy(Selector.XPATH, "//*[@id='legislacaoCadastroForm']/div[7]/button").Click();
+            Assert.AreEqual(FindBy(Selector.CLASS,"swal2-title").Text, "Sucesso");
         }
         private bool IsElementPresent(By by)
         {
