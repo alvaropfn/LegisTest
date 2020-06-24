@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -165,7 +166,9 @@ namespace LegisTests
             
             //* Select pdf
             IWebElement anexo = FindBy(Selector.ID, "anexo");
-            anexo.SendKeys(@"C:\\Users\\11400574480\\Desktop\\sugestoesSIAIAP.pdf");
+            string pdfFile = Directory.GetCurrentDirectory() + "//teste.pdf";
+            anexo.SendKeys(pdfFile);
+            Thread.Sleep(2000);
             // anexo.Click();
             // anexo.Clear();
 //            anexo.SendKeys(@"C:/Users/alvaro/Documents/Flutter-Dev-Syllabus.pdf");
