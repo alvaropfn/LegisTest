@@ -242,8 +242,9 @@ namespace LegisTests
 
             //* Enviar
             FindBy(Selector.XPATH, "//*[@id='legislacaoCadastroForm']/div[8]/button").Click();
-
-            Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Carregando informações...");
+            Thread.Sleep(200);
+            Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
+            
         }
         private bool IsElementPresent(By by)
         {
