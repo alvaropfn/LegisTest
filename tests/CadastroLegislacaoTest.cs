@@ -243,9 +243,16 @@ namespace LegisTests
             anexo.SendKeys("C:\\Users\\alvaro\\Workspace\\CLIENTES\\TCE\\legis\\LegisTests\\teste.pdf");
 
             //* Enviar
+<<<<<<< HEAD
             FindBy(Selector.XPATH, "//*[@id='legislacaoCadastroForm']/div[8]/button")?.Click();
             // Thread.Sleep(30000);
             Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
+=======
+            FindBy(Selector.XPATH, "//*[@id='legislacaoCadastroForm']/div[8]/button").Click();
+            Thread.Sleep(200);
+            Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
+            
+>>>>>>> 74935ee3b8c4d90b066014d16f5795f6f9f202b9
         }
         private bool IsElementPresent(By by)
         {
