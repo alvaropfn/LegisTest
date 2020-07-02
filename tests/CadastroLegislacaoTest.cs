@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -30,7 +31,7 @@ namespace LegisTests
         [SetUp]
         public void SetupTest()
         {
-          this.LimparMemoria();
+          //this.LimparMemoria();
             driver = new ChromeDriver(ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory));
 
             driver.Manage().Window.Maximize();
@@ -135,13 +136,30 @@ namespace LegisTests
             FindBy(Selector.ID, "idEsferaGovernamental").Click();
             FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[1]/div[1]/ng-select/ng-dropdown-panel/div/div[2]/div[1]").Click();
 
+            FindBy(Selector.ID, "idEsferaGovernamental").Click();
+            FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[1]/div[1]/ng-select/ng-dropdown-panel/div/div[2]/div[1]").Click();
+            
             //* Select Area Atuacao
-            FindBy(Selector.ID, "select_idAreaAtuacao")?.Click();
-            FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[1]/div[2]/ng-select/ng-dropdown-panel/div/div[2]/div[1]")?.Click();
+            IWebElement areaAtuacao = FindBy(Selector.ID, "select_idAreaAtuacao");
+            if(areaAtuacao != null){
+                areaAtuacao.Click();
+                FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[1]/div[2]/ng-select/ng-dropdown-panel/div/div[2]/div[1]").Click();
+            }
+            //  FindBy(Selector.ID, "select_idAreaAtuacao").Click();
+            //  FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[1]/div[2]/ng-select/ng-dropdown-panel/div/div[2]/div[1]").Click();
 
             //* Select Municipio
-            FindBy(Selector.ID, "idCidade")?.Click();
-            FindBy(Selector.XPATH, "/html/body/ng-dropdown-panel/div/div[2]/div[88]")?.Click();
+            IWebElement cidade = FindBy(Selector.ID, "idCidade");
+            if(cidade !=null){
+            FindBy(Selector.ID, "idCidade").Click();
+            FindBy(Selector.XPATH, "/html/body/ng-dropdown-panel/div/div[2]/div[88]").Click();
+
+            }
+            
+            //FindBy(Selector.ID, "idCidade").Click();
+            //FindBy(Selector.XPATH, "/html/body/ng-dropdown-panel/div/div[2]/div[88]").Click();
+
+            Thread.Sleep(2000);
 
             //* Select tipo norma
             FindBy(Selector.ID, "select_idTipoNorma")?.Click();
@@ -175,25 +193,58 @@ namespace LegisTests
 
             //* Select Data Inicio Vigencia
             IWebElement dataInicioVigencia = FindBy(Selector.ID, "dataInicioVigencia");
-            dataInicioVigencia.Click();
-            dataInicioVigencia.Clear();
-            dataInicioVigencia.SendKeys("01/01/2020");
+            if(dataInicioVigencia!=null){
+                dataInicioVigencia.Click();
+                dataInicioVigencia.Clear();
+                dataInicioVigencia.SendKeys("01/01/2020");
+            }
 
             //* Select Data Fim Vigencia
             IWebElement dataFimVigencia = FindBy(Selector.ID, "dataFimVigencia");
-            dataFimVigencia.Click();
-            dataFimVigencia.Clear();
-            dataFimVigencia.SendKeys("01/12/2020");
+            if(dataFimVigencia!=null){
+                dataFimVigencia.Click();
+                dataFimVigencia.Clear();
+                dataFimVigencia.SendKeys("01/12/2020");
+            }
+
+            //add ementa
+            IWebElement ementa = FindBy(Selector.ID,"ementa");
+            if(ementa!=null){
+                ementa.Click();
+                ementa.Clear();
+                ementa.SendKeys("testando");
+            }
+
+            //add endereço eletronico
+            IWebElement enderecoEletronico = FindBy(Selector.ID,"enderecoEletronico");
+            if(enderecoEletronico!=null){
+            enderecoEletronico.Click();
+                enderecoEletronico.Clear();
+                enderecoEletronico.SendKeys("https://www.google.com.br/");
+            }
+
+            
+            //add assunto normas
+            for(int i=1;i<3;i++){
+                FindBy(Selector.ID, "idAssuntoNorma").Click();
+                FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[5]/div[1]/ng-select/ng-dropdown-panel/div/div[2]/div["+i+"]").Click();
+                FindBy(Selector.ID, "acao").Click();
+            }
+
+            //add Orgaos
+             for(int i=1;i<3;i++){
+                FindBy(Selector.ID, "idOrgao").Click();
+                FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[5]/div[3]/ng-select/ng-dropdown-panel/div/div[2]/div["+i+"]").Click();
+                FindBy(Selector.ID, "acaoOrgao").Click();
+             }
 
             //* Select pdf
             IWebElement anexo = FindBy(Selector.ID, "anexo");
-            // anexo.Click();
-            // anexo.Clear();
-            anexo.SendKeys(@"C:/Users/alvaro/Documents/Flutter-Dev-Syllabus.pdf");
+            anexo.SendKeys("C:\\Users\\alvaro\\Workspace\\CLIENTES\\TCE\\legis\\LegisTests\\teste.pdf");
 
             //* Enviar
             FindBy(Selector.XPATH, "//*[@id='legislacaoCadastroForm']/div[8]/button")?.Click();
-
+            // Thread.Sleep(30000);
             Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
         }
         private bool IsElementPresent(By by)
