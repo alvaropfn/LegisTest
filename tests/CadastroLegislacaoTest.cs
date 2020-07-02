@@ -231,7 +231,7 @@ namespace LegisTests
              for(int i=1;i<3;i++){
              FindBy(Selector.ID, "idOrgao").Click();
              FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[5]/div[3]/ng-select/ng-dropdown-panel/div/div[2]/div["+i+"]").Click();
-             FindBy(Selector.ID, "acao").Click();
+             FindBy(Selector.ID, "acaoOrgao").Click();
              }
 
             //* Select pdf
@@ -243,7 +243,7 @@ namespace LegisTests
             //* Enviar
             FindBy(Selector.XPATH, "//*[@id='legislacaoCadastroForm']/div[8]/button").Click();
 
-            Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
+            Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Carregando informações...");
         }
         private bool IsElementPresent(By by)
         {
