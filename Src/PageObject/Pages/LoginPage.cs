@@ -13,7 +13,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
 namespace LegisTests.pages {
-  class LoginPage : BasePage
+  class LoginPage : BaseDriver
   {
     protected IWebDriver driver;
 
@@ -21,13 +21,15 @@ namespace LegisTests.pages {
     public IWebElement txtPassword;
     public IWebElement btnLogin;
 
-    public LoginPage(IWebDriver driver) : base(driver){
+    public LoginPage(IWebDriver driver) : base(driver)
+    {
       txtUserName = FindBy(Selector.ID, "username");
       txtPassword = FindBy(Selector.ID, "password");
       btnLogin = FindBy(Selector.XPATH, "(//input[@type='text'])[2]");
     }
 
-    public void PerformLogin(string username, string password){
+    public void PerformLogin(string username, string password)
+    {
       txtUserName.Click();
       txtUserName.Clear();
       txtUserName.SendKeys(username);

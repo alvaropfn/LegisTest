@@ -16,21 +16,19 @@ using LegisTests.pages;
 
 namespace LegisTests
 {
-  public class BasePage
-  {
+  public class BaseDriver
+{
     protected IWebDriver driver;
     protected WebDriverWait wait;
 
-    protected int span;
+    protected int spanTime;
 
-    public BasePage(IWebDriver driver, int span = 5)
+    public BaseDriver(IWebDriver driver, int spanTime = 5)
     {
       this.driver = driver;
-      this.span = span;
-      this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(this.span));
+      this.spanTime = spanTime;
+      this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(this.spanTime));
     }
-
-    
 
     public IWebElement FindBy(Selector selector, string refs, WebDriverWait waiter = null){
       IWebElement toReturn;
