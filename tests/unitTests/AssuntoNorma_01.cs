@@ -41,8 +41,15 @@ namespace LegisTests
       fetchMenu();
     }
 
+
+    public override void AssertBadRequest(){
+      Thread.Sleep(500);
+      Assert.AreEqual(FindBy(Selector.XPATH,"/html/body/app-root/app-dashboard/div/div/main/app-assunto-norma-form/tce-server-error-messages/div[1]/ul/li").Text,"Campo nome Assunto Norma obrigatório");
+      Thread.Sleep(500);
+    }
+
     [TestCase ("uma norma")]
-    [TestCase ("ota norma")]
+ 
     public void cadastrarAssuntonorma(string _assuntoNorma){
 
       goToPageCadastrarAssuntoNorma();
@@ -51,5 +58,15 @@ namespace LegisTests
 
       AssertSucess();
     }
+
+    [TestCase ("")]
+    public void cadastrarAssuntonormaFalha(string _assuntoNorma){
+
+      goToPageCadastrarAssuntoNorma();
+      CadastrarAssuntoNormaPage page = new CadastrarAssuntoNormaPage(driver);
+      page.CadastrarNorma(_assuntoNorma);
+      AssertBadRequest();
+    }
+
   }
 }

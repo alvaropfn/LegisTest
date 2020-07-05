@@ -80,6 +80,9 @@ namespace LegisTests
       Thread.Sleep(500);
     }
 
+
+    public  abstract void AssertBadRequest();
+
     [OneTimeTearDown]
     public void TeardownTest()
     {
