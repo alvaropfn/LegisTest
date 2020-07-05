@@ -21,8 +21,13 @@ namespace LegisTests
   {
     public string baseURL;
     // public IWebDriver driver;
-    public IWebElement lnkModulo;
-    public IWebElement lnkPage;
+    public IWebElement lnkModuleADMLegis;
+    public IWebElement lnkPageAssuntoNorma;
+    
+    public IWebElement lnkModuleCTRLegis;
+    public IWebElement lnkPageCadastrarLegislacao;
+    public IWebElement lnkPageListarLegislacao;
+
     public StringBuilder verificationErrors;
 
     public BaseTest(IWebDriver driver, int spanTime) : base( driver, spanTime)
@@ -33,22 +38,31 @@ namespace LegisTests
     [SetUp]
     public abstract void SetupTest();
 
-    // public setup(string baseURL, IWebDriver driver,IWebElement lnkModulo, IWebElement lnkPage){
-    //   this.baseURL = baseURL;
-    //   this.driver = driver;
-    //   this.lnkModulo = lnkModulo;
-    //   this.lnkPage = lnkPage;
-    // }
+  public void fetchMenu()
+  {
+    lnkModuleADMLegis = FindBy(Selector.LINK, "Módulo de administração do Legis");
+    lnkPageAssuntoNorma = FindBy(Selector.ID, "AssuntoNorma");
 
 
-    public void goToModule()
+    lnkModuleCTRLegis = FindBy(Selector.LINK, "Módulo de controle de legislações do Legis");
+    lnkPageCadastrarLegislacao = FindBy(Selector.ID, "LegislacaoCadastro");
+    lnkPageListarLegislacao = FindBy(Selector.ID, "LegislacaoConsulta");
+
+  }
+    public void goToPageAssuntoNorma()
     {
-      lnkModulo.Click();
+      lnkModuleADMLegis.Click();
+      lnkPageAssuntoNorma.Click();
     }
-
-    public void goToPage()
+    public void goToPageCadastrarLegislacao()
     {
-      lnkPage.Click();
+      lnkModuleCTRLegis.Click();
+      lnkPageCadastrarLegislacao.Click();
+    }
+    public void goToPageListarLegislacao()
+    {
+      lnkModuleCTRLegis.Click();
+      lnkPageListarLegislacao.Click();
     }
 
     [TearDown]

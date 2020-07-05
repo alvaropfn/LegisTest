@@ -40,13 +40,8 @@ namespace LegisTests
         "tce@123",
         LoginPage.Operator.INTERN
       );
-
-      // go to further modules
-      lnkModulo = FindBy(Selector.LINK, "Módulo de administração do Legis");
-      lnkPage = FindBy(Selector.ID, "AssuntoNorma");
-
-      lnkModulo.Click();
-      lnkPage.Click();
+      fetchMenu();
+      goToPageAssuntoNorma();
     }
 
     [Test] //todo implement a proper test
