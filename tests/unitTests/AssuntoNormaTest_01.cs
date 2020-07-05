@@ -36,7 +36,6 @@ namespace LegisTests
         LoginPage.Operator.INTERN
       );
       fetchMenu();
-      Thread.Sleep(500);
     }
 
 

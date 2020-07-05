@@ -50,7 +50,8 @@ namespace LegisTests
     lnkModuleCTRLegis = FindBy(Selector.LINK, "Módulo de controle de legislações do Legis");
     lnkPageCadastrarLegislacao = FindBy(Selector.ID, "LegislacaoCadastro");
     lnkPageListarLegislacao = FindBy(Selector.ID, "LegislacaoConsulta");
-
+    
+    Thread.Sleep(500);
   }
 
     // TODO: fix path to page on front
