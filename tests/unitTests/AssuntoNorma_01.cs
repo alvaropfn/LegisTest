@@ -19,8 +19,6 @@ namespace LegisTests
   [TestFixture]
   public class AssuntoNorma_01 : BaseTest
   {
-
-    // public AssuntoNorma_01(IWebDriver driver, int spanTime) : base(driver, spanTime){}
     public AssuntoNorma_01() : base (
         new ChromeDriver(ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory)),
         5)
@@ -43,7 +41,8 @@ namespace LegisTests
       fetchMenu();
     }
 
-    [TestCase ("mais uma norma")]
+    [TestCase ("uma norma")]
+    [TestCase ("ota norma")]
     public void cadastrarAssuntonorma(string _assuntoNorma){
 
       goToPageCadastrarAssuntoNorma();

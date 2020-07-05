@@ -35,7 +35,7 @@ namespace LegisTests
       verificationErrors = new StringBuilder();
     }
 
-    [SetUp]
+    [OneTimeSetUp]
     public abstract void SetupTest();
 
   public void fetchMenu()
@@ -75,22 +75,12 @@ namespace LegisTests
     }
 
     public void AssertSucess(){
-      Thread.Sleep(200);
+      Thread.Sleep(500);
       Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
+      Thread.Sleep(500);
     }
 
-    public void awaitAlert()
-    {
-      Console.WriteLine("waiting");
-      Thread.Sleep(2000);
-      FindBy(Selector.XPATH, "body > div.swal2-container.swal2-center.swal2-backdrop-show > div");
-
-      wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(5));
-      Console.WriteLine("sucess");
-    }
-
-
-    [TearDown]
+    [OneTimeTearDown]
     public void TeardownTest()
     {
       try
