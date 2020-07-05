@@ -17,10 +17,10 @@ using LegisTests.pages;
 namespace LegisTests
 {
   [TestFixture]
-  public class AssuntoNorma_01 : BaseTest
+  public class AssuntoNormaTest_01 : BaseTest
   {
     public const string norma01 = "norma-18902ybcis0";
-    public AssuntoNorma_01() : base (
+    public AssuntoNormaTest_01() : base (
         new ChromeDriver(ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory)),
         5)
     {}
