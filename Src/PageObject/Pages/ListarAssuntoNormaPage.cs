@@ -20,10 +20,26 @@ namespace LegisTests.pages
 
     protected IWebElement txtSearchInput;
     protected IWebElement btnNovo;
+
+    protected IWebElement table;
     public ListarAssuntoNormaPage(IWebDriver driver) : base(driver)
     {
       txtSearchInput = FindBy(Selector.XPATH, "//*[@id='DataTables_Table_7_filter']/label/input");
+      
       btnNovo = FindBy(Selector.XPATH, "//*[@id='consulta']/a");
+
+      table = FindBy(Selector.XPATH, "//*[@id='DataTables_Table_13']/tbody");
     }
+
+    public void performSearch(string text)
+    {
+      txtSearchInput.Click();
+      txtSearchInput.SendKeys(text);
+      txtSearchInput.Submit();
+    }
+
+    // //*[@id="DataTables_Table_13"]/tbody/tr[1]/td[2]/small
+
+    // //*[@id="DataTables_Table_13"]/tbody/tr[1]
   }
 }

@@ -50,7 +50,7 @@ namespace LegisTests
 
   }
 
-    // TODO: fix it on front
+    // TODO: fix path to page on front
     public void goToPageCadastrarAssuntoNorma()
     { 
       // lnkModuleADMLegis.Click();
