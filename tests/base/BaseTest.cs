@@ -20,10 +20,10 @@ namespace LegisTests
   public abstract class BaseTest : BaseDriver
   {
     public string baseURL;
-    // public IWebDriver driver;
+
     public IWebElement lnkModuleADMLegis;
     public IWebElement lnkPageAssuntoNorma;
-    
+
     public IWebElement lnkModuleCTRLegis;
     public IWebElement lnkPageCadastrarLegislacao;
     public IWebElement lnkPageListarLegislacao;
@@ -49,7 +49,16 @@ namespace LegisTests
     lnkPageListarLegislacao = FindBy(Selector.ID, "LegislacaoConsulta");
 
   }
-    public void goToPageAssuntoNorma()
+
+    // TODO: fix it on front
+    public void goToPageCadastrarAssuntoNorma()
+    { 
+      // lnkModuleADMLegis.Click();
+      // lnkPageAssuntoNorma.Click();
+
+      driver.Navigate().GoToUrl("http://localhost:4200/#/dashboard/assuntonorma/new");
+    }
+    public void goToPageListarAssuntoNorma()
     {
       lnkModuleADMLegis.Click();
       lnkPageAssuntoNorma.Click();
@@ -64,6 +73,22 @@ namespace LegisTests
       lnkModuleCTRLegis.Click();
       lnkPageListarLegislacao.Click();
     }
+
+    public void AssertSucess(){
+      Thread.Sleep(200);
+      Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
+    }
+
+    public void awaitAlert()
+    {
+      Console.WriteLine("waiting");
+      Thread.Sleep(2000);
+      FindBy(Selector.XPATH, "body > div.swal2-container.swal2-center.swal2-backdrop-show > div");
+
+      wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(5));
+      Console.WriteLine("sucess");
+    }
+
 
     [TearDown]
     public void TeardownTest()

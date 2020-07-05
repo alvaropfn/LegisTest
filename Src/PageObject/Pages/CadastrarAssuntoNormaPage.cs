@@ -12,15 +12,15 @@ using OpenQA.Selenium.Support.UI;
 
 using SeleniumExtras.WaitHelpers;
 
-namespace LegisTests.pages 
+namespace LegisTests.pages
 {
   class CadastrarAssuntoNormaPage : BaseDriver
   {
     protected IWebDriver driver;
 
-    IWebElement txtNomeAssuntoNorma;
+    protected IWebElement txtNomeAssuntoNorma;
 
-    IWebElement btnSalvarNorma;
+    protected IWebElement btnSalvarNorma;
 
     public CadastrarAssuntoNormaPage(IWebDriver driver) : base(driver)
     {
@@ -28,6 +28,11 @@ namespace LegisTests.pages
       btnSalvarNorma = FindBy(Selector.ID, "idButtonSalvar");
     }
 
-    
+    public void CadastrarNorma(string text)
+    {
+      txtNomeAssuntoNorma.Clear();
+      txtNomeAssuntoNorma.SendKeys(text);
+      btnSalvarNorma.Click();
+    }
   }
 }

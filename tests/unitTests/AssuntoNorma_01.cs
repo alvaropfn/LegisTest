@@ -41,10 +41,16 @@ namespace LegisTests
         LoginPage.Operator.INTERN
       );
       fetchMenu();
-      goToPageAssuntoNorma();
     }
 
-    [Test] //todo implement a proper test
-    public void DoSomeTest(){}
+    [TestCase ("mais uma norma")]
+    public void cadastrarAssuntonorma(string _assuntoNorma){
+
+      goToPageCadastrarAssuntoNorma();
+      CadastrarAssuntoNormaPage page = new CadastrarAssuntoNormaPage(driver);
+      page.CadastrarNorma(_assuntoNorma);
+
+      AssertSucess();
+    }
   }
 }

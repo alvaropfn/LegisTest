@@ -148,31 +148,31 @@
 //             Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
 //         }
 
-//         // [Test]
-//         // public void testeFalha()
-//         // {
-//         //   Login();
+        // [Test]
+        // public void testeFalha()
+        // {
+        //   Login();
 
-//         //   //* go to module
-//         //   FindBy(Selector.LINK, "Módulo de administração do Legis").Click();
-//         //   FindBy(Selector.ID, "AssuntoNorma").Click();
+        //   //* go to module
+        //   FindBy(Selector.LINK, "Módulo de administração do Legis").Click();
+        //   FindBy(Selector.ID, "AssuntoNorma").Click();
 
-//         //   Thread.Sleep(1000);
+        //   Thread.Sleep(1000);
 
-//         //   FindBy(Selector.XPATH, "//div[@id='consulta']/a/i").Click();
+        //   FindBy(Selector.XPATH, "//div[@id='consulta']/a/i").Click();
 
-//         //   string texto="";
-//         //   IWebElement nomeAssuntoNorma = FindBy(Selector.ID, "nomeAssuntoNorma");
-//         //   if(nomeAssuntoNorma != null){
-//         //       nomeAssuntoNorma.Click();
-//         //       nomeAssuntoNorma.Clear();
-//         //       nomeAssuntoNorma.SendKeys(texto);
-//         //   }
+        //   string texto="";
+        //   IWebElement nomeAssuntoNorma = FindBy(Selector.ID, "nomeAssuntoNorma");
+        //   if(nomeAssuntoNorma != null){
+        //       nomeAssuntoNorma.Click();
+        //       nomeAssuntoNorma.Clear();
+        //       nomeAssuntoNorma.SendKeys(texto);
+        //   }
 
-//         //   FindBy(Selector.ID, "idButtonSalvar").Click();
-//         //   Thread.Sleep(200);
-//         //   Assert.AreEqual(FindBy(Selector.XPATH,"/html/body/app-root/app-dashboard/div/div/main/app-assunto-norma-form/tce-server-error-messages/div[1]/ul/li").Text,"Campo nome Assunto Norma obrigatório");
-//         // }
+        //   FindBy(Selector.ID, "idButtonSalvar").Click();
+        //   Thread.Sleep(200);
+        //   Assert.AreEqual(FindBy(Selector.XPATH,"/html/body/app-root/app-dashboard/div/div/main/app-assunto-norma-form/tce-server-error-messages/div[1]/ul/li").Text,"Campo nome Assunto Norma obrigatório");
+        // }
 
 
 
