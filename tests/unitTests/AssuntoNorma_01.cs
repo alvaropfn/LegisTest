@@ -20,12 +20,13 @@ namespace LegisTests
   public class AssuntoNorma_01 : BaseTest
   {
 
-    public AssuntoNorma_01(IWebDriver driver, int spanTime) : base(driver, spanTime){}
+    // public AssuntoNorma_01(IWebDriver driver, int spanTime) : base(driver, spanTime){}
+    public AssuntoNorma_01() : base (
+        new ChromeDriver(ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory)),
+        5)
+    {}
 
-    [SetUp]
-    public void loginTest()
-    {
-
+    public override void SetupTest() {
       baseURL = "http://localhost:4200/";
 
       driver.Manage().Window.Maximize();
@@ -34,7 +35,11 @@ namespace LegisTests
 
       // login
       LoginPage loginpage = new LoginPage(driver);
-      loginpage.PerformLogin("05510151447", "tce@123");
+      loginpage.PerformLogin(
+        "05510151447",
+        "tce@123",
+        LoginPage.Operator.INTERN
+      );
 
       // go to further modules
       lnkModulo = FindBy(Selector.LINK, "Módulo de administração do Legis");
@@ -44,9 +49,7 @@ namespace LegisTests
       lnkPage.Click();
     }
 
-    [Test] //todo a proper test
-    public void doNothing(){}
-
-    
+    [Test] //todo implement a proper test
+    public void DoSomeTest(){}
   }
 }

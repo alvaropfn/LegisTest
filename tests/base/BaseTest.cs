@@ -16,6 +16,7 @@ using LegisTests.pages;
 
 namespace LegisTests
 {
+  [TestFixture]
   public abstract class BaseTest : BaseDriver
   {
     public string baseURL;
@@ -28,6 +29,9 @@ namespace LegisTests
     {
       verificationErrors = new StringBuilder();
     }
+
+    [SetUp]
+    public abstract void SetupTest();
 
     // public setup(string baseURL, IWebDriver driver,IWebElement lnkModulo, IWebElement lnkPage){
     //   this.baseURL = baseURL;

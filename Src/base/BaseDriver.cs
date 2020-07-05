@@ -23,7 +23,7 @@ namespace LegisTests
 
     protected int spanTime;
 
-    public BaseDriver(IWebDriver driver, int spanTime = 5)
+    public BaseDriver(IWebDriver driver, int spanTime = 10)
     {
       this.driver = driver;
       this.spanTime = spanTime;
@@ -70,7 +70,7 @@ namespace LegisTests
       catch (System.Exception)
       {toReturn = null;}
 
-      Thread.Sleep(150);
+      Thread.Sleep(250);
       return toReturn;
     }
 
