@@ -21,11 +21,16 @@ namespace LegisTests
     protected IWebDriver driver;
     protected WebDriverWait wait;
 
+    protected Actions actions;
+
     protected int spanTime;
 
     public BaseDriver(IWebDriver driver, int spanTime = 10)
     {
       this.driver = driver;
+
+      this.actions = new Actions(driver);
+
       this.spanTime = spanTime;
       this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(this.spanTime));
     }

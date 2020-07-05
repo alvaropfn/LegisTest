@@ -19,8 +19,7 @@ namespace LegisTests
   [TestFixture]
   public class AssuntoNorma_01 : BaseTest
   {
-    string norma01 = "uma norma";
-    string norma02 = "ota norma";
+    public const string norma01 = "norma-18902ybcis0";
     public AssuntoNorma_01() : base (
         new ChromeDriver(ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory)),
         5)
@@ -28,10 +27,6 @@ namespace LegisTests
 
     public override void SetupTest() {
       baseURL = "http://localhost:4200/";
-
-      driver.Manage().Window.Maximize();
-      driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-      driver.Navigate().GoToUrl(baseURL);
 
       // login
       LoginPage loginpage = new LoginPage(driver);
@@ -60,7 +55,7 @@ namespace LegisTests
       AssertBadRequest();
     }
 
-    // [TestCase ("uma norma")]
+    // [TestCase (norma01)]
     public void cadastrarAssuntonorma(string _assuntoNorma)
     {
       goToPageCadastrarAssuntoNorma();
@@ -70,7 +65,7 @@ namespace LegisTests
       AssertSucess();
     }
 
-    [TestCase ("Norma 012312509123")]
+    // [TestCase (norma01)]
     public void listarAssuntonorma(string _assuntoNorma)
     {
       goToPageListarAssuntoNorma();

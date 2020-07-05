@@ -33,6 +33,9 @@ namespace LegisTests
     public BaseTest(IWebDriver driver, int spanTime) : base( driver, spanTime)
     {
       verificationErrors = new StringBuilder();
+      driver.Manage().Window.Maximize();
+      driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+      driver.Navigate().GoToUrl(baseURL);
     }
 
     [OneTimeSetUp]
@@ -75,9 +78,9 @@ namespace LegisTests
     }
 
     public void AssertSucess(){
-      Thread.Sleep(250);
+      Thread.Sleep(500);
       Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
-      Thread.Sleep(250);
+      Thread.Sleep(500);
     }
 
 
