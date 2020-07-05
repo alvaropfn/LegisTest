@@ -75,13 +75,13 @@ namespace LegisTests
     }
 
     public void AssertSucess(){
-      Thread.Sleep(500);
+      Thread.Sleep(250);
       Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
-      Thread.Sleep(500);
+      Thread.Sleep(250);
     }
 
 
-    public  abstract void AssertBadRequest();
+    public abstract void AssertBadRequest();
 
     [OneTimeTearDown]
     public void TeardownTest()

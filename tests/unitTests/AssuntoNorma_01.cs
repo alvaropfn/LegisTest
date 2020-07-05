@@ -19,6 +19,8 @@ namespace LegisTests
   [TestFixture]
   public class AssuntoNorma_01 : BaseTest
   {
+    string norma01 = "uma norma";
+    string norma02 = "ota norma";
     public AssuntoNorma_01() : base (
         new ChromeDriver(ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory)),
         5)
@@ -39,6 +41,7 @@ namespace LegisTests
         LoginPage.Operator.INTERN
       );
       fetchMenu();
+      Thread.Sleep(500);
     }
 
 
@@ -48,10 +51,18 @@ namespace LegisTests
       Thread.Sleep(500);
     }
 
-    [TestCase ("uma norma")]
- 
-    public void cadastrarAssuntonorma(string _assuntoNorma){
+    // [TestCase ("")]
+    public void cadastrarAssuntoNormaFalha(string _assuntoNorma)
+    {
+      goToPageCadastrarAssuntoNorma();
+      CadastrarAssuntoNormaPage page = new CadastrarAssuntoNormaPage(driver);
+      page.CadastrarNorma(_assuntoNorma);
+      AssertBadRequest();
+    }
 
+    // [TestCase ("uma norma")]
+    public void cadastrarAssuntonorma(string _assuntoNorma)
+    {
       goToPageCadastrarAssuntoNorma();
       CadastrarAssuntoNormaPage page = new CadastrarAssuntoNormaPage(driver);
       page.CadastrarNorma(_assuntoNorma);
@@ -59,14 +70,12 @@ namespace LegisTests
       AssertSucess();
     }
 
-    [TestCase ("")]
-    public void cadastrarAssuntonormaFalha(string _assuntoNorma){
-
-      goToPageCadastrarAssuntoNorma();
-      CadastrarAssuntoNormaPage page = new CadastrarAssuntoNormaPage(driver);
-      page.CadastrarNorma(_assuntoNorma);
-      AssertBadRequest();
+    [TestCase ("Norma 012312509123")]
+    public void listarAssuntonorma(string _assuntoNorma)
+    {
+      goToPageListarAssuntoNorma();
+      ListarAssuntoNormaPage page = new ListarAssuntoNormaPage(driver);
+      page.performSearch(_assuntoNorma);
     }
-
   }
 }

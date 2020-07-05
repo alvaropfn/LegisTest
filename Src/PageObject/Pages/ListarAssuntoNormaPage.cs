@@ -24,8 +24,8 @@ namespace LegisTests.pages
     protected IWebElement table;
     public ListarAssuntoNormaPage(IWebDriver driver) : base(driver)
     {
-      txtSearchInput = FindBy(Selector.XPATH, "//*[@id='DataTables_Table_7_filter']/label/input");
-      
+      txtSearchInput = FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-assunto-norma-list/div/div[2]/div/div/div[2]/label/input");
+
       btnNovo = FindBy(Selector.XPATH, "//*[@id='consulta']/a");
 
       table = FindBy(Selector.XPATH, "//*[@id='DataTables_Table_13']/tbody");
@@ -33,13 +33,14 @@ namespace LegisTests.pages
 
     public void performSearch(string text)
     {
-      txtSearchInput.Click();
+      txtSearchInput.Clear();
       txtSearchInput.SendKeys(text);
-      txtSearchInput.Submit();
+
+      IWebElement element = FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-assunto-norma-list/div/div[2]/div/div/table/tbody/tr[1]/td[2]/small");
+
+      Console.WriteLine(element.Text);
+
+      Assert.IsNotNull(element);
     }
-
-    // //*[@id="DataTables_Table_13"]/tbody/tr[1]/td[2]/small
-
-    // //*[@id="DataTables_Table_13"]/tbody/tr[1]
   }
 }
