@@ -38,7 +38,7 @@ namespace LegisTests.pages
     protected IWebElement btnAddOrgaoAssociado;
 
     protected IWebElement pdfAnexo;
-    protected IWebElement btnSendAnexo;
+    protected IWebElement btnSubmit;
 
 
     public CadastrarLegislacaoPage(IWebDriver driver) : base(driver)
@@ -65,7 +65,8 @@ namespace LegisTests.pages
       btnAddOrgaoAssociado = FindBy(Selector.ID, "acaoOrgao");
 
       pdfAnexo = FindBy(Selector.ID, "anexo");
-      btnSendAnexo = FindBy(Selector.XPATH, "//*[@id='legislacaoCadastroForm']/div[8]/button");
+
+      btnSubmit = FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[8]/button");
 
     }
 
@@ -134,6 +135,7 @@ namespace LegisTests.pages
       chooseDate(datFimVigencia, dia, mes, ano);
     }
 
+    // TODO perform validations
     private void chooseDate(
       IWebElement picker,
       int dia,
@@ -158,9 +160,79 @@ namespace LegisTests.pages
       txtEnderecoEletronico.Clear();
       txtEnderecoEletronico.SendKeys(text);
     }
-    public void cadastrarLegislacao()
+
+    public void chooseAssuntosNorma(int amount = 3)
     {
-      
+      string option = "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[5]/div[1]/ng-select/ng-dropdown-panel/div/div[2]/";
+      for (int i = 1; i < amount+1; i++)
+      {
+          slcAssuntoNorma.Click();
+          FindBy(Selector.XPATH, option + $"div[{i}]").Click();
+          Thread.Sleep(100);
+          btnAddAssuntoNorma.Click();
+      }
+      slcAssuntoNorma.Click();
+    }
+
+    public void chooseOrgao(int amount = 3)
+    {
+      string option = "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-cadastro/div/fieldset/form/div[5]/div[3]/ng-select/ng-dropdown-panel/div/div[2]/";
+      for (int i = 1; i < amount+1; i++)
+      {
+          slcOrgaoAssociado.Click();
+          FindBy(Selector.XPATH, option + $"div[{i}]").Click();
+          Thread.Sleep(100);
+          btnAddOrgaoAssociado.Click();
+      }
+      slcAssuntoNorma.Click();
+    }
+
+    public void choosePDF(string path = "")
+    {
+      if(path == "")
+      {
+        pdfAnexo.SendKeys(findPDF());
+      } else
+      {
+        pdfAnexo.SendKeys(path);
+      }
+    }
+
+    private string findPDF()
+    {
+      string osv = System.Environment.OSVersion.VersionString;
+      string divider = osv.Contains("Windows") ? "\\" : "/";
+      string path = Environment.CurrentDirectory;
+      string[] splited = path.Split(divider);
+      string toReturn = "";
+      for (int i = 0; i < splited.Length - 3; i++)
+      {
+        toReturn += splited[i] + divider;
+      }
+      toReturn += "teste.pdf";
+      return toReturn;
+    }
+    public void fetchLegislacao()
+    {
+      chooseEsfera();
+      chooseAreaAtuacao();
+      chooseMunicipio();
+      chooseTipoNorma();
+      chooseAno();
+      chooseMeioPublicacao();
+      chooseDataPublicacao();
+      chooseDataInicioVigencia();
+      chooseDataFimVigencia();
+      chooseEmenta();
+      chooseEnderecoEletronico();
+      chooseAssuntosNorma();
+      chooseOrgao();
+      choosePDF();
+    }
+
+    public void submitLegislacao()
+    {
+      btnSubmit.Click();
     }
 
     public enum Esfera{

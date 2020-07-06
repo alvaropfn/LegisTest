@@ -49,22 +49,9 @@ namespace LegisTests
 
       CadastrarLegislacaoPage page = new CadastrarLegislacaoPage(driver);
 
-      page.chooseEsfera();
-      page.chooseAreaAtuacao();
-      page.chooseMunicipio();
-      page.chooseTipoNorma();
-      page.chooseAno();
-      page.chooseMeioPublicacao();
-      page.chooseDataPublicacao();
-      page.chooseDataInicioVigencia();
-      page.chooseDataFimVigencia();
-      page.chooseEmenta();
-      page.chooseEnderecoEletronico();
-
-      page.cadastrarLegislacao();
-
-      Thread.Sleep(10000);
-      // AssertSucess();
+      page.fetchLegislacao();
+      page.submitLegislacao();
+      AssertSucess();
     }
 
     // [TestCase]
@@ -77,7 +64,6 @@ namespace LegisTests
       AssertSucess();
 
     }
-
   }
 
 }
