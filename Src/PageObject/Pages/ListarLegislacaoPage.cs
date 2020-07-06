@@ -60,10 +60,41 @@ namespace LegisTests.pages
       btnClearFilter = FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-consulta/div[1]/div[2]/div/form/div[2]/button[2]"); //TODO: should have an id
     }
 
-    public void performSearch()
+    public void SearchEmenta(string text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum")
     {
-      // FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-consulta/div[1]/div[2]/div/form/div[1]/div[8]/ng-select/ng-dropdown-panel/div/div[2]/div[345]").Click();
+      txtEmenta.Clear();
+      txtEmenta.SendKeys(text);
+    }
 
+    public void ClearSearch(){
+      btnClearFilter.Click();
+    }
+    public void SubmitSearch()
+    {
+      btnApplyFilter.Click();
+      Thread.Sleep(5000);
+    }
+
+    public IWebElement getDelete()
+    {
+      return FindBy(Selector.ID, "legislacao-excluir-1");
+    }
+
+    public IWebElement getFile()
+    {
+      return FindBy(Selector.ID, "legislacao-download-1");
+    }
+
+    public IWebElement getEdit()
+    {
+      return FindBy(Selector.ID, "legislacao-view-1");
+    }
+    public void DeleteLegislacao()
+    {
+      getDelete().Click();
+      Thread.Sleep(250);
+      FindBy(Selector.XPATH, "/html/body/div[2]/div/div[3]/button[1]").Click(); // confirm deletation
+      Thread.Sleep(250);
     }
   }
 }

@@ -57,23 +57,27 @@ namespace LegisTests
     // TODO: fix path to page on front
     public void goToPageCadastrarAssuntoNorma()
     { 
+      Thread.Sleep(1000);
       // lnkModuleADMLegis.Click();
       // lnkPageAssuntoNorma.Click();
-
+      
       driver.Navigate().GoToUrl("http://localhost:4200/#/dashboard/assuntonorma/new");
     }
     public void goToPageListarAssuntoNorma()
     {
+      Thread.Sleep(1000);
       lnkModuleADMLegis.Click();
       lnkPageAssuntoNorma.Click();
     }
     public void goToPageCadastrarLegislacao()
     {
+      Thread.Sleep(1000);
       lnkModuleCTRLegis.Click();
       lnkPageCadastrarLegislacao.Click();
     }
     public void goToPageListarLegislacao()
     {
+      Thread.Sleep(1000);
       lnkModuleCTRLegis.Click();
       lnkPageListarLegislacao.Click();
     }
@@ -85,6 +89,10 @@ namespace LegisTests
       Thread.Sleep(500);
     }
     
+    public bool AssertElementExist(IWebElement element)
+    {
+      return element != null;
+    }
     public abstract void AssertBadRequest();
 
     [OneTimeTearDown]

@@ -20,11 +20,41 @@ namespace LegisTests
   [TestFixture]
   public class LegislacaoTest_01 : BaseTest
   {
-    
+    public const string ementa01 = " aiosdhiadf32458jg";
     public LegislacaoTest_01() : base (
         new ChromeDriver(ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory)),
         5)
     {}
+
+    public override void AssertBadRequest(){}
+
+    [TestCase (ementa01)]
+    public void CadastrarLegislacao(string ementa)
+    {
+      goToPageCadastrarLegislacao();
+
+      CadastrarLegislacaoPage page = new CadastrarLegislacaoPage(driver);
+
+      page.fetchLegislacao();
+      page.chooseEmenta(ementa01);
+      page.submitLegislacao();
+      AssertSucess();
+    }
+
+    [TestCase (ementa01)]
+    public void SearchEmenta(String text)
+    {
+      goToPageListarLegislacao();
+      ListarLegislacaoPage page = new ListarLegislacaoPage(driver);
+
+      // page.ClearSearch();
+      // page.SubmitSearch();
+      page.SearchEmenta(text);
+      page.SubmitSearch();
+
+      Assert.IsNotNull(page.getDelete());
+      page.DeleteLegislacao();
+    }
 
     public override void SetupTest() {
 
@@ -37,32 +67,6 @@ namespace LegisTests
       );
 
       fetchMenu();
-    }
-    public override void AssertBadRequest(){}
-
-    [TestCase]
-    public void CadastrarLegislacao()
-    {
-
-      goToPageCadastrarLegislacao();
-      // waitAlert();
-
-      CadastrarLegislacaoPage page = new CadastrarLegislacaoPage(driver);
-
-      page.fetchLegislacao();
-      page.submitLegislacao();
-      AssertSucess();
-    }
-
-    // [TestCase]
-    public void ListarLegislacao()
-    {
-      goToPageListarLegislacao();
-      ListarLegislacaoPage page = new ListarLegislacaoPage(driver);
-      page.performSearch();
-
-      AssertSucess();
-
     }
   }
 
