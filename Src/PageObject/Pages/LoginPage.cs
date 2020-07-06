@@ -13,7 +13,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
 namespace LegisTests.pages {
-  class LoginPage : BaseDriver
+  public class LoginPage : BaseDriver
   {
     protected IWebDriver driver;
     public IWebElement txtUserName;

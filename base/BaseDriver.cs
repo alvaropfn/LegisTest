@@ -9,10 +9,11 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Interactions;
 
 using SeleniumExtras.WaitHelpers;
 
-using LegisTests.pages;
+using LegisTests;
 
 namespace LegisTests
 {
@@ -25,7 +26,7 @@ namespace LegisTests
 
     protected int spanTime;
 
-    public BaseDriver(IWebDriver driver, int spanTime = 10)
+    public BaseDriver(IWebDriver driver, int spanTime = 5)
     {
       this.driver = driver;
 
@@ -85,6 +86,12 @@ namespace LegisTests
       CSS,
       XPATH,
       LINK,
+    }
+
+    public void waitAlert()
+    {
+      Thread.Sleep(250);
+      FindBy(Selector.XPATH, "body > div.swal2-container.swal2-center.swal2-backdrop-show > div");
     }
 
   }

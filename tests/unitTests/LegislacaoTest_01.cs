@@ -12,6 +12,8 @@ using OpenQA.Selenium.Support.UI;
 
 using SeleniumExtras.WaitHelpers;
 
+using LegisTests.pages;
+
 namespace LegisTests
 {
 
@@ -25,7 +27,6 @@ namespace LegisTests
     {}
 
     public override void SetupTest() {
-      baseURL = "http://localhost:4200/";
 
       // login
       LoginPage loginpage = new LoginPage(driver);
@@ -34,9 +35,48 @@ namespace LegisTests
         "tce@123",
         LoginPage.Operator.INTERN
       );
+
       fetchMenu();
     }
+    public override void AssertBadRequest(){}
 
+    [TestCase]
+    public void CadastrarLegislacao()
+    {
+
+      goToPageCadastrarLegislacao();
+      // waitAlert();
+
+      CadastrarLegislacaoPage page = new CadastrarLegislacaoPage(driver);
+
+      page.chooseEsfera();
+      page.chooseAreaAtuacao();
+      page.chooseMunicipio();
+      page.chooseTipoNorma();
+      page.chooseAno();
+      page.chooseMeioPublicacao();
+      page.chooseDataPublicacao();
+      page.chooseDataInicioVigencia();
+      page.chooseDataFimVigencia();
+      page.chooseEmenta();
+      page.chooseEnderecoEletronico();
+
+      page.cadastrarLegislacao();
+
+      Thread.Sleep(10000);
+      // AssertSucess();
+    }
+
+    // [TestCase]
+    public void ListarLegislacao()
+    {
+      goToPageListarLegislacao();
+      ListarLegislacaoPage page = new ListarLegislacaoPage(driver);
+      page.performSearch();
+
+      AssertSucess();
+
+    }
 
   }
 

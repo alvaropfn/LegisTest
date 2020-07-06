@@ -12,8 +12,6 @@ using OpenQA.Selenium.Support.UI;
 
 using SeleniumExtras.WaitHelpers;
 
-using LegisTests.pages;
-
 namespace LegisTests
 {
   [TestFixture]
@@ -32,9 +30,11 @@ namespace LegisTests
 
     public BaseTest(IWebDriver driver, int spanTime) : base( driver, spanTime)
     {
+      baseURL = "http://localhost:4200/";
       verificationErrors = new StringBuilder();
       driver.Manage().Window.Maximize();
       driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+
       driver.Navigate().GoToUrl(baseURL);
     }
 
@@ -78,13 +78,13 @@ namespace LegisTests
       lnkPageListarLegislacao.Click();
     }
 
-    public void AssertSucess(){
+    public void AssertSucess()
+    {
       Thread.Sleep(500);
       Assert.AreEqual(FindBy(Selector.ID,"swal2-title").Text, "Sucesso");
       Thread.Sleep(500);
     }
-
-
+    
     public abstract void AssertBadRequest();
 
     [OneTimeTearDown]

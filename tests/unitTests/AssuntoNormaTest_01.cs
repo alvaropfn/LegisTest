@@ -20,14 +20,14 @@ namespace LegisTests
   public class AssuntoNormaTest_01 : BaseTest
   {
     public const string norma01 = "norma-18902ybcis0";
+    
     public AssuntoNormaTest_01() : base (
         new ChromeDriver(ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory)),
         5)
     {}
 
-    public override void SetupTest() {
-      baseURL = "http://localhost:4200/";
-
+    public override void SetupTest()
+    {
       // login
       LoginPage loginpage = new LoginPage(driver);
       loginpage.PerformLogin(
@@ -35,11 +35,13 @@ namespace LegisTests
         "tce@123",
         LoginPage.Operator.INTERN
       );
+
       fetchMenu();
     }
 
 
-    public override void AssertBadRequest(){
+    public override void AssertBadRequest()
+    {
       Thread.Sleep(500);
       Assert.AreEqual(FindBy(Selector.XPATH,"/html/body/app-root/app-dashboard/div/div/main/app-assunto-norma-form/tce-server-error-messages/div[1]/ul/li").Text,"Campo nome Assunto Norma obrigatório");
       Thread.Sleep(500);

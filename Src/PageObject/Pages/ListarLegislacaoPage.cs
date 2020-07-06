@@ -14,10 +14,8 @@ using SeleniumExtras.WaitHelpers;
 
 namespace LegisTests.pages
 {
-  class ListarLegislacaoPage : BaseDriver
+  public class ListarLegislacaoPage : BaseDriver
   {
-    protected IWebDriver driver;
-
     protected IWebElement txtNumeroNorma;
     protected IWebElement txtAno;
     protected IWebElement slcTipoNorma;
@@ -62,9 +60,8 @@ namespace LegisTests.pages
       btnClearFilter = FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-consulta/div[1]/div[2]/div/form/div[2]/button[2]"); //TODO: should have an id
     }
 
-    public performSearch()
+    public void performSearch()
     {
-      
       // FindBy(Selector.XPATH, "/html/body/app-root/app-dashboard/div/div/main/app-legislacao-consulta/div[1]/div[2]/div/form/div[1]/div[8]/ng-select/ng-dropdown-panel/div/div[2]/div[345]").Click();
 
     }
